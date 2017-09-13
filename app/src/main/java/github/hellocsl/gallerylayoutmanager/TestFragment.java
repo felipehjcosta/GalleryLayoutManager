@@ -22,10 +22,6 @@ import github.hellocsl.gallerylayoutmanager.base.BaseRestoreFragment;
 import github.hellocsl.gallerylayoutmanager.layout.impl.ScaleTransformer;
 import github.hellocsl.layoutmanager.gallery.GalleryLayoutManager;
 
-/**
- * Created by chensuilun on 2017/3/22.
- */
-
 public class TestFragment extends BaseRestoreFragment {
 
     @BindView(R.id.main_recycle1)
@@ -88,8 +84,6 @@ public class TestFragment extends BaseRestoreFragment {
                 mMainRecycle1.smoothScrollToPosition(position);
             }
         });
-//        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.HORIZONTAL);
-//        mMainRecycle1.addItemDecoration(dividerItemDecoration);
         mMainRecycle1.setAdapter(demoAdapter1);
 
         final GalleryLayoutManager layoutManager2 = new GalleryLayoutManager(GalleryLayoutManager.VERTICAL);

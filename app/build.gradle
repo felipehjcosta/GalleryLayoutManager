@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "github.hellocsl.gallerylayoutmanager"
         minSdkVersion 14
@@ -20,21 +20,19 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+
+    compile project(':library')
+
     compile deps.supportV7Compat
-    testCompile 'junit:junit:4.12'
     compile deps.recycleView
     compile deps.cardView
 
     compile deps.butterKnife
     annotationProcessor deps.butterKnifeProcessor
-//    compile ('github.hellocsl:GalleryLayoutManager:1.0.3'){
-//        exclude group: 'com.android.support', module:'recyclerview-v7'
-//    }
 
-    compile project(path: ':library')
+    testCompile 'junit:junit:4.12'
 
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

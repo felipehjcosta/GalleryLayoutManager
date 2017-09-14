@@ -35,7 +35,7 @@ dependencies {
 
 publish {
     userOrg = 'bcsl'
-    groupId = 'github.hellocsl'
+    groupId = 'com.felipecosta'
     artifactId = 'GalleryLayoutManager'
     publishVersion = '1.0.6'
     desc = 'A custom LayoutManager to build a Gallery or a ViewPager like widget with RecycleView in Android and ' +

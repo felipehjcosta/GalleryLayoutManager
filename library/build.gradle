@@ -34,7 +34,7 @@ dependencies {
 }
 
 publish {
-    userOrg = 'bcsl'
+    userOrg = 'felipecosta'
     groupId = 'com.felipecosta'
     artifactId = 'GalleryLayoutManager'
     publishVersion = '1.0.6'

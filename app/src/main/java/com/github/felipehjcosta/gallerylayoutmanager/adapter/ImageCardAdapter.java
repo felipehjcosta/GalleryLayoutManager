@@ -1,4 +1,4 @@
-package com.felipecosta.gallerylayoutmanager.adapter;
+package com.github.felipehjcosta.gallerylayoutmanager.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,8 +9,8 @@ import android.widget.ImageView;
 
 import java.util.List;
 
-import com.felipecosta.gallerylayoutmanager.BuildConfig;
-import com.felipecosta.gallerylayoutmanager.R;
+import com.github.felipehjcosta.gallerylayoutmanager.BuildConfig;
+import com.github.felipehjcosta.gallerylayoutmanager.R;
 
 public class ImageCardAdapter extends RecyclerView.Adapter<ImageCardAdapter.ViewHolder> implements View.OnClickListener {
     private static final String TAG = "ImageCardAdapter";

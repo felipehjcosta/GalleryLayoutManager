@@ -1,4 +1,4 @@
-package com.felipecosta.gallerylayoutmanager.base;
+package com.github.felipehjcosta.gallerylayoutmanager.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.felipecosta.gallerylayoutmanager.BuildConfig;
+import com.github.felipehjcosta.gallerylayoutmanager.BuildConfig;
 
 
 public abstract class BaseRestoreFragment extends Fragment {

@@ -9,11 +9,11 @@
                android:layout_height="match_parent"
                android:scaleType="centerCrop"/>
 
-    <com.felipecosta.gallerylayoutmanager.FlingRecycleView
+    <com.github.felipehjcosta.gallerylayoutmanager.FlingRecycleView
         android:id="@+id/pager_recycle_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.felipecosta.gallerylayoutmanager.FlingRecycleView>
+    </com.github.felipehjcosta.gallerylayoutmanager.FlingRecycleView>
 
 </FrameLayout>

@@ -1,4 +1,4 @@
-package com.felipecosta.gallerylayoutmanager;
+package com.github.felipehjcosta.gallerylayoutmanager;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -17,24 +17,24 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.felipecosta.gallerylayoutmanager.adapter.DemoAdapter;
-import com.felipecosta.gallerylayoutmanager.base.BaseRestoreFragment;
-import com.felipecosta.gallerylayoutmanager.layout.impl.ScaleTransformer;
-import com.felipecosta.layoutmanager.GalleryLayoutManager;
+import com.github.felipehjcosta.gallerylayoutmanager.adapter.DemoAdapter;
+import com.github.felipehjcosta.gallerylayoutmanager.base.BaseRestoreFragment;
+import com.github.felipehjcosta.gallerylayoutmanager.layout.impl.ScaleTransformer;
+import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager;
 
 public class TestFragment extends BaseRestoreFragment {
 
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.main_recycle1)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.main_recycle1)
     RecyclerView mMainRecycle1;
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.main_tv_recycle_info_1)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.main_tv_recycle_info_1)
     TextView mMainTvRecycleInfo1;
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.main_recycle2)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.main_recycle2)
     RecyclerView mMainRecycle2;
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.main_tv_recycle_info_2)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.main_tv_recycle_info_2)
     TextView mMainTvRecycleInfo2;
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.main_tv_recycle_info_3)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.main_tv_recycle_info_3)
     TextView mMainTvRecycleInfo3;
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.main_btn_random)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_random)
     Button mMainBtnRandom;
 
     public static TestFragment newInstance() {
@@ -57,7 +57,7 @@ public class TestFragment extends BaseRestoreFragment {
 
     @Override
     protected View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(com.felipecosta.gallerylayoutmanager.R.layout.fragment_test, container, false);
+        return inflater.inflate(com.github.felipehjcosta.gallerylayoutmanager.R.layout.fragment_test, container, false);
     }
 
     @Override
@@ -113,9 +113,9 @@ public class TestFragment extends BaseRestoreFragment {
 
     private final Random mRandom = new Random();
 
-    @OnClick({com.felipecosta.gallerylayoutmanager.R.id.main_btn_random, com.felipecosta.gallerylayoutmanager.R.id.main_btn_data_change})
+    @OnClick({com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_random, com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_data_change})
     public void onClick(View view) {
-        if (view.getId() == com.felipecosta.gallerylayoutmanager.R.id.main_btn_random) {
+        if (view.getId() == com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_random) {
             int selectPosition = mRandom.nextInt(50);
             mMainRecycle1.smoothScrollToPosition(selectPosition);
             mMainRecycle2.smoothScrollToPosition(selectPosition);

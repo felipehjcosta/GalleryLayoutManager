@@ -1,10 +1,10 @@
-package com.felipecosta.gallerylayoutmanager;
+package com.github.felipehjcosta.gallerylayoutmanager;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
-import com.felipecosta.gallerylayoutmanager.util.StatusBarCompat;
+import com.github.felipehjcosta.gallerylayoutmanager.util.StatusBarCompat;
 
 import butterknife.ButterKnife;
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         initWindow();
         super.onCreate(savedInstanceState);
-        setContentView(com.felipecosta.gallerylayoutmanager.R.layout.activity_main);
+        setContentView(com.github.felipehjcosta.gallerylayoutmanager.R.layout.activity_main);
         ButterKnife.bind(this);
         if (savedInstanceState != null) {
             mViewPagerFragment = ViewPagerFragment.findFragment(getSupportFragmentManager());
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
-                .add(com.felipecosta.gallerylayoutmanager.R.id.activity_main, fragment)
+                .add(com.github.felipehjcosta.gallerylayoutmanager.R.id.activity_main, fragment)
                 .hide(mMainFragment)
                 .addToBackStack(fragment.getClass().getSimpleName())
                 .commitAllowingStateLoss();
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         getSupportFragmentManager().beginTransaction()
-                .replace(com.felipecosta.gallerylayoutmanager.R.id.activity_main, mMainFragment).commit();
+                .replace(com.github.felipehjcosta.gallerylayoutmanager.R.id.activity_main, mMainFragment).commit();
     }
 
     public void gotoFragment(int type) {

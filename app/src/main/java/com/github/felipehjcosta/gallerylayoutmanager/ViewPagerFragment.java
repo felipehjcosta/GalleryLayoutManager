@@ -1,4 +1,4 @@
-package com.felipecosta.gallerylayoutmanager;
+package com.github.felipehjcosta.gallerylayoutmanager;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -16,17 +16,17 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.felipecosta.gallerylayoutmanager.adapter.ImageCardAdapter;
-import com.felipecosta.gallerylayoutmanager.base.BaseRestoreFragment;
-import com.felipecosta.gallerylayoutmanager.layout.impl.CurveTransformer;
-import com.felipecosta.gallerylayoutmanager.util.BitmapUtils;
-import com.felipecosta.gallerylayoutmanager.util.FastBlur;
-import com.felipecosta.layoutmanager.GalleryLayoutManager;
+import com.github.felipehjcosta.gallerylayoutmanager.adapter.ImageCardAdapter;
+import com.github.felipehjcosta.gallerylayoutmanager.base.BaseRestoreFragment;
+import com.github.felipehjcosta.gallerylayoutmanager.layout.impl.CurveTransformer;
+import com.github.felipehjcosta.gallerylayoutmanager.util.BitmapUtils;
+import com.github.felipehjcosta.gallerylayoutmanager.util.FastBlur;
+import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager;
 
 public class ViewPagerFragment extends BaseRestoreFragment {
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.pager_bg)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.pager_bg)
     ImageView mPagerBg;
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.pager_recycle_view)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.pager_recycle_view)
     FlingRecycleView mPagerRecycleView;
     List<Integer> mResId;
 
@@ -49,10 +49,10 @@ public class ViewPagerFragment extends BaseRestoreFragment {
 
     {
         mResId = new ArrayList<Integer>(4);
-        mResId.add(com.felipecosta.gallerylayoutmanager.R.drawable.img1);
-        mResId.add(com.felipecosta.gallerylayoutmanager.R.drawable.img2);
-        mResId.add(com.felipecosta.gallerylayoutmanager.R.drawable.img3);
-        mResId.add(com.felipecosta.gallerylayoutmanager.R.drawable.img4);
+        mResId.add(com.github.felipehjcosta.gallerylayoutmanager.R.drawable.img1);
+        mResId.add(com.github.felipehjcosta.gallerylayoutmanager.R.drawable.img2);
+        mResId.add(com.github.felipehjcosta.gallerylayoutmanager.R.drawable.img3);
+        mResId.add(com.github.felipehjcosta.gallerylayoutmanager.R.drawable.img4);
         mCardItems = new ArrayList<ImageCardAdapter.CardItem>(50);
         ImageCardAdapter.CardItem cardItem;
         for (int i = 0; i < 50; i++) {
@@ -63,7 +63,7 @@ public class ViewPagerFragment extends BaseRestoreFragment {
 
     @Override
     protected View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(com.felipecosta.gallerylayoutmanager.R.layout.fragment_view_pager, container, false);
+        return inflater.inflate(com.github.felipehjcosta.gallerylayoutmanager.R.layout.fragment_view_pager, container, false);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.felipecosta.layoutmanager
+package com.github.felipehjcosta.layoutmanager
 
 import android.content.Context
 import android.graphics.PointF
@@ -12,7 +12,7 @@ import android.util.Log
 import android.util.SparseArray
 import android.view.View
 import android.view.ViewGroup
-import com.felipecosta.layoutmanager.BuildConfig
+import com.github.felipehjcosta.layoutmanager.BuildConfig
 
 
 /**

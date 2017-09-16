@@ -1,4 +1,4 @@
-package com.felipecosta.gallerylayoutmanager.util;
+package com.github.felipehjcosta.gallerylayoutmanager.util;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;

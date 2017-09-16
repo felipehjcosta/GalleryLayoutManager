@@ -1,4 +1,4 @@
-package com.felipecosta.gallerylayoutmanager;
+package com.github.felipehjcosta.gallerylayoutmanager;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

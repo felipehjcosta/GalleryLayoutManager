@@ -1,8 +1,8 @@
-package com.felipecosta.gallerylayoutmanager.layout.impl;
+package com.github.felipehjcosta.gallerylayoutmanager.layout.impl;
 
 import android.view.View;
 
-import com.felipecosta.layoutmanager.GalleryLayoutManager;
+import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager;
 
 public class ScaleTransformer implements GalleryLayoutManager.ItemTransformer {
 

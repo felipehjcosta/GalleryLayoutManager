@@ -1,4 +1,4 @@
-package com.felipecosta.gallerylayoutmanager;
+package com.github.felipehjcosta.gallerylayoutmanager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,17 +15,14 @@ import android.widget.Button;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.felipecosta.gallerylayoutmanager.base.BaseRestoreFragment;
-
-import static com.felipecosta.gallerylayoutmanager.MainActivity.SHOW_GALLERY;
-import static com.felipecosta.gallerylayoutmanager.MainActivity.SHOW_PAGER;
+import com.github.felipehjcosta.gallerylayoutmanager.base.BaseRestoreFragment;
 
 public class MainFragment extends BaseRestoreFragment implements Toolbar.OnMenuItemClickListener {
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.toolbar)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.main_btn_pager)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_pager)
     Button mMainBtnPager;
-    @BindView(com.felipecosta.gallerylayoutmanager.R.id.main_btn_gallery)
+    @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_gallery)
     Button mMainBtnGallery;
 
 
@@ -54,13 +51,13 @@ public class MainFragment extends BaseRestoreFragment implements Toolbar.OnMenuI
 
     @Override
     protected View onCreateContentView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(com.felipecosta.gallerylayoutmanager.R.layout.fragment_main, container, false);
+        return inflater.inflate(com.github.felipehjcosta.gallerylayoutmanager.R.layout.fragment_main, container, false);
     }
 
     @Override
     protected void initView(View root, Bundle savedInstanceState) {
         ButterKnife.bind(this, root);
-        mToolbar.inflateMenu(com.felipecosta.gallerylayoutmanager.R.menu.base_github);
+        mToolbar.inflateMenu(com.github.felipehjcosta.gallerylayoutmanager.R.menu.base_github);
         mToolbar.setOnMenuItemClickListener(this);
     }
 
@@ -71,24 +68,24 @@ public class MainFragment extends BaseRestoreFragment implements Toolbar.OnMenuI
     }
 
 
-    @OnClick({com.felipecosta.gallerylayoutmanager.R.id.main_btn_pager, com.felipecosta.gallerylayoutmanager.R.id.main_btn_gallery})
+    @OnClick({com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_pager, com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_gallery})
     public void onClick(View view) {
         if (mMainActivity == null) {
             return;
         }
         switch (view.getId()) {
-            case com.felipecosta.gallerylayoutmanager.R.id.main_btn_pager:
-                mMainActivity.gotoFragment(SHOW_PAGER);
+            case com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_pager:
+                mMainActivity.gotoFragment(MainActivity.SHOW_PAGER);
                 break;
-            case com.felipecosta.gallerylayoutmanager.R.id.main_btn_gallery:
-                mMainActivity.gotoFragment(SHOW_GALLERY);
+            case com.github.felipehjcosta.gallerylayoutmanager.R.id.main_btn_gallery:
+                mMainActivity.gotoFragment(MainActivity.SHOW_GALLERY);
                 break;
         }
     }
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        if (item.getItemId() == com.felipecosta.gallerylayoutmanager.R.id.menu_github) {
+        if (item.getItemId() == com.github.felipehjcosta.gallerylayoutmanager.R.id.menu_github) {
             openMyGitHub();
             return true;
         }

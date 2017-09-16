@@ -1,4 +1,4 @@
-package com.felipecosta.gallerylayoutmanager.adapter;
+package com.github.felipehjcosta.gallerylayoutmanager.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Random;
 
-import com.felipecosta.gallerylayoutmanager.BuildConfig;
-import com.felipecosta.gallerylayoutmanager.R;
+import com.github.felipehjcosta.gallerylayoutmanager.BuildConfig;
+import com.github.felipehjcosta.gallerylayoutmanager.R;
 
 public class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.ViewHolder> implements View.OnClickListener {
     public static final int VIEW_TYPE_IMAGE = 0;

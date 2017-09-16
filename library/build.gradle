@@ -33,12 +33,16 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
 publish {
-    userOrg = 'felipecosta'
-    groupId = 'com.felipecosta'
-    artifactId = 'GalleryLayoutManager'
-    publishVersion = '1.0.6'
+    userOrg = 'fcostaa'
+    groupId = 'com.github.felipehjcosta'
+    artifactId = 'gallerylayoutmanager'
+    publishVersion = '1.0.0'
     desc = 'A custom LayoutManager to build a Gallery or a ViewPager like widget with RecycleView in Android and ' +
             'support both HORIZONTAL and VERTICAL scroll.'
-    website = 'https://github.com/BCsl/GalleryLayoutManager'
+    website = 'https://github.com/felipehjcosta/GalleryLayoutManager'
 }

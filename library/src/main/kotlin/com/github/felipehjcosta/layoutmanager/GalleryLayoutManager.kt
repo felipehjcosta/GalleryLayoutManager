@@ -12,7 +12,6 @@ import android.util.Log
 import android.util.SparseArray
 import android.view.View
 import android.view.ViewGroup
-import com.github.felipehjcosta.layoutmanager.BuildConfig
 
 
 /**
@@ -604,16 +603,6 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
      * @author chensuilun
      */
     internal inner class State(val itemsFrames: SparseArray<Rect> = SparseArray<Rect>(), var scrollDelta: Int = 0) {
-//        /**
-//         * Record all item view 's last position after last layout
-//         */
-//         var mItemsFrames= SparseArray<Rect>()
-//
-//        /**
-//         * RecycleView 's current scroll distance since first layout
-//         */
-//        var mScrollDelta: Int = 0
-
         fun putOrSet(index: Int, frameRect: Rect) {
             if (itemsFrames.get(index) == null) {
                 itemsFrames.put(index, frameRect)

@@ -1,0 +1,27 @@
+language: android
+
+jdk:
+- oraclejdk8
+
+android:
+  components:
+  - tools
+  - platform-tools
+  - android-25
+  - build-tools-25.0.3
+sudo: false
+
+script: gradle/buildViaTravis.sh
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+cache:
+  directories:
+  - "$HOME/.m2"
+  - "$HOME/.gradle"
+
+env:
+  global:
+  - secure: ERo2n5sFfs512G8TbEROnBgQVxVvKB2QWvMZ+XkNgU3F8LecVghaWqDXuxnDxjRBKW2cfrKG2tj50543zWUNHgz694owd8QyrnjAXksUwM1uj8h5tVJrKLcrjGIJ1UNQ7GXxZm7ta9Kz8G8BOLlgvt5/Ssd/n92PwL3swjP4Z49EbWz+b6JOlvcbYk8zByriACHUlT+Wjl8V/lqD77cs74fYE0qe0Ka8aGUMMzWOQojJMiCsOw1aMgvRmVBo+keGXTRiZCUEWO0Cj6BgBm9fKzZ+Zfr27Y6lE0TveAmsJX7creVRw8Midm2hOitfzjlrzSWGVoAaE0TV5Ks0lK6irz+nmDI2MsWMAnJivkjs3UO0kV5Y8yr+aTNn8yPe0D8Nsn8Ec2w1qaDolRwENm+Obn3FE/IkRNs+F+9puiZ3bjG9BBOQH3Gb96Adc8E0c9w1hpSO0RjlHK7RHOFQHwAvqVVSYLLVRxc0+ksKNIPf4STO6Ftgs2F38g6GyDsbgDY/nkeJ8RlUVZfMgqFV5kP0KxSsnLoRckXSWwgza/6byQgy39zEpE+RbHzw04ena9OF7bncoc5DLaV7JpCLzgv0wdekyDRZKBE3UyN4mO5Y7dj3XhyDfp821WYq5gqvK39LtRQEHAN9w+siomri3RLpMom0edeI5cwJZJQEw5SbrWU=
+  - secure: qW3I14kr1PdJUSK4LubJI1TbOeJnP0IU1793dJaC927hlly2JShky+JvciUlLKtJ8NNAGloyua/Zf5U4Qhfh8quBeJqKFBf4nzrjgHOaqrzOeG8jmNXSHIwaK7x1hu3x8bEAzq4JaTWaCP6umQZWhSAVm6lJqgSAvSzhaog0n97UfHaFK6Q0cVvGwGuY8nzGqQBC6dJ9bk2UmV9jx+tRGQ5xc2OUirCXTZ4972th7buxzIkahoY4vMgBjXbciK9LX60BlR2+rkhHm7bZtQ2CpnkGFaWsDOYkMumRJUTY3oDVHE4MCF88niwKZsM3/4R+dPb8hjmBo6FNUsc05IUZ7tGqcfPGt1rxZ4S/zHhhKoQLR9l/yogk4/HlQJ9Uy74QEF3q6/Uuvj1qQodORF2tZltWx7WdEr1SbQIApKa9TZVyBybVketVyLLB1/1TyVqmqf5vKWSDQBmz9UHrhcl8a/Giv3vfIsshI3lwiy2jo9/8RlenHA5MVsyJ7W4pKZhSuoaN4b3FCVBQpC92jYYlD8ePaifFsu4IuRC6aPQBCRDfAyeZ7SYDgrj5R+nB4xhrVtxt9mkT9XIXQCIiBFiFTvuxAOnYk2BIUQTZEAQLCckGpwlIzt2TM5ZOF8ay7SnE1ZjEXch3NPqGLY4ZNPYFJj/Ou4cGPM/nedjtGYkZeYU=

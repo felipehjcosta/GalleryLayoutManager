@@ -1,7 +1,5 @@
 # GalleryLayoutManager
 
-[中文](./README_CN.md)
-
 A custom LayoutManager to build a Gallery or a ViewPager like RecyclerView that shows items in a center-locked and support both HORIZONTAL and VERTICAL scroll.And View Recycle Machine is also supported.
 
 ## Screenshots

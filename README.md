@@ -15,13 +15,13 @@ A custom LayoutManager to build a Gallery or a ViewPager like RecyclerView that 
 #### Gradle
 
 ```groovy
-compile 'com.github.felipehjcosta:GalleryLayoutManager:{lastest-release-version}'
+compile 'com.github.felipehjcosta:gallerylayoutmanager:{lastest-release-version}'
 ```
 
 > Be care ：if you have used `RecyclerView` in your project , maybe your should use this library as below and your recyclerview-v7 requires API level 24.2.0 or higher
 
 ```java
-compile ('com.github.felipehjcosta:GalleryLayoutManager:{lastest-release-version}'){
+compile ('com.github.felipehjcosta:gallerylayoutmanager:{lastest-release-version}'){
     exclude group: 'com.android.support', module:'recyclerview-v7'
 }
 ```

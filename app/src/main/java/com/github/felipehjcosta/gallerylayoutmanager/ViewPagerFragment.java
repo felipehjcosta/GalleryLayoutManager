@@ -11,17 +11,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import com.github.felipehjcosta.gallerylayoutmanager.adapter.ImageCardAdapter;
 import com.github.felipehjcosta.gallerylayoutmanager.base.BaseRestoreFragment;
 import com.github.felipehjcosta.gallerylayoutmanager.layout.impl.CurveTransformer;
 import com.github.felipehjcosta.gallerylayoutmanager.util.BitmapUtils;
 import com.github.felipehjcosta.gallerylayoutmanager.util.FastBlur;
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ViewPagerFragment extends BaseRestoreFragment {
     @BindView(com.github.felipehjcosta.gallerylayoutmanager.R.id.pager_bg)
@@ -48,12 +51,12 @@ public class ViewPagerFragment extends BaseRestoreFragment {
     List<ImageCardAdapter.CardItem> mCardItems;
 
     {
-        mResId = new ArrayList<Integer>(4);
+        mResId = new ArrayList<>(4);
         mResId.add(com.github.felipehjcosta.gallerylayoutmanager.R.drawable.img1);
         mResId.add(com.github.felipehjcosta.gallerylayoutmanager.R.drawable.img2);
         mResId.add(com.github.felipehjcosta.gallerylayoutmanager.R.drawable.img3);
         mResId.add(com.github.felipehjcosta.gallerylayoutmanager.R.drawable.img4);
-        mCardItems = new ArrayList<ImageCardAdapter.CardItem>(50);
+        mCardItems = new ArrayList<>(50);
         ImageCardAdapter.CardItem cardItem;
         for (int i = 0; i < 50; i++) {
             cardItem = new ImageCardAdapter.CardItem(mResId.get(i % mResId.size()), "item:" + i);
@@ -74,14 +77,13 @@ public class ViewPagerFragment extends BaseRestoreFragment {
     @Override
     protected void initData(Bundle savedInstanceState) {
         mPagerRecycleView.setFlingAble(false);
-        GalleryLayoutManager layoutManager = new GalleryLayoutManager(GalleryLayoutManager.HORIZONTAL);
+        GalleryLayoutManager layoutManager = new GalleryLayoutManager();
         layoutManager.attach(mPagerRecycleView, 30);
-//        layoutManager.attach(mPagerRecycleView);
         layoutManager.setOnItemSelectedListener(new GalleryLayoutManager.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(RecyclerView recyclerView, View item, int position) {
-                Bitmap bmp = BitmapUtils.decodeSampledBitmapFromResource(getResources(), mResId.get(position % mResId.size()), 100, 100);
-                mPagerBg.setImageBitmap(FastBlur.doBlur(bmp, 20, false));
+            public void onItemSelected(RecyclerView recyclerView, @NotNull View item, int position) {
+                Bitmap bmp = BitmapUtils.decodeSampledBitmapFromResource(getResources(), mResId.get(position % mResId.size()), item.getWidth(), item.getHeight());
+                mPagerBg.setImageBitmap(FastBlur.doBlur(bmp, 5, false));
             }
         });
         layoutManager.setItemTransformer(new CurveTransformer());

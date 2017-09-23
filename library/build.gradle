@@ -41,7 +41,7 @@ publish {
     userOrg = 'fcostaa'
     groupId = 'com.github.felipehjcosta'
     artifactId = 'gallerylayoutmanager'
-    publishVersion = '1.0.0'
+    publishVersion = '1.1.0'
     desc = 'A custom LayoutManager to build a Gallery or a ViewPager like widget with RecycleView in Android and ' +
             'support both HORIZONTAL and VERTICAL scroll.'
     website = 'https://github.com/felipehjcosta/GalleryLayoutManager'

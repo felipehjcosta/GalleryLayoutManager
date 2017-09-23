@@ -141,16 +141,10 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
 
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "firstFillCover finish:first: $firstVisiblePosition,last:$lastVisiblePos")
+            Log.d(TAG, "firstFillCover finished: (first: $firstVisiblePosition, last:$lastVisiblePos)")
         }
 
-        itemTransformer?.run {
-            for (i in 0..childCount - 1) {
-                getChildAt(i)?.let {
-                    transformItem(this@GalleryLayoutManager, it, calculateToCenterFraction(it, scrollDelta.toFloat()))
-                }
-            }
-        }
+        applyTransformationOnChildrenBy(scrollDelta)
         innerScrollListener.onScrolled(recyclerView, 0, 0)
     }
 
@@ -311,11 +305,13 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
             fillWithVertical(recycler, scrollDelta)
         }
 
-        itemTransformer?.run {
-            for (i in 0..childCount - 1) {
-                getChildAt(i)?.let {
-                    transformItem(this@GalleryLayoutManager, it, calculateToCenterFraction(it, scrollDelta.toFloat()))
-                }
+        applyTransformationOnChildrenBy(scrollDelta)
+    }
+
+    private fun applyTransformationOnChildrenBy(scrollDelta: Int) = itemTransformer?.run {
+        for (i in 0 until childCount) {
+            getChildAt(i)?.let {
+                transformItem(this@GalleryLayoutManager, it, i, calculateToCenterFraction(it, scrollDelta.toFloat()))
             }
         }
     }
@@ -728,12 +724,13 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
          * *
          * @param item          Apply the transformation to this item
          *
+         * @param viewPosition  The view's position
          * *
          * @param fraction      of page relative to the current front-and-center position of the pager.
          * *                      0 is front and center. 1 is one full
          * *                      page position to the right, and -1 is one page position to the left.
          */
-        fun transformItem(layoutManager: GalleryLayoutManager, item: View, fraction: Float)
+        fun transformItem(layoutManager: GalleryLayoutManager, item: View, viewPosition: Int, fraction: Float)
     }
 
     /**

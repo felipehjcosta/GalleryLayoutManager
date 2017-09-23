@@ -1,6 +1,9 @@
 # GalleryLayoutManager
 
-A custom LayoutManager to build a Gallery or a ViewPager like RecyclerView that shows items in a center-locked and support both HORIZONTAL and VERTICAL scroll.And View Recycle Machine is also supported.
+[![Build Status](https://travis-ci.org/felipehjcosta/GalleryLayoutManager.svg?branch=master)](https://travis-ci.org/felipehjcosta/GalleryLayoutManager)
+[![Bintray](https://img.shields.io/bintray/v/fcostaa/maven/gallerylayoutmanager.svg)](https://bintray.com/fcostaa/maven/gallerylayoutmanager)
+
+A custom LayoutManager to build a Gallery or a ViewPager like RecyclerView that shows items in a center-locked and support both HORIZONTAL and VERTICAL scroll. And View Recycle Machine is also supported. This library is a modified fork from [here](https://github.com/BCsl/GalleryLayoutManager).
 
 ## Screenshots
 
@@ -18,7 +21,7 @@ A custom LayoutManager to build a Gallery or a ViewPager like RecyclerView that 
 compile 'com.github.felipehjcosta:gallerylayoutmanager:{lastest-release-version}'
 ```
 
-> Be care ：if you have used `RecyclerView` in your project , maybe your should use this library as below and your recyclerview-v7 requires API level 24.2.0 or higher
+> Be care：if you have used `RecyclerView` in your project , maybe your should use this library as below and your recyclerview-v7 requires API level 24.2.0 or higher
 
 ```java
 compile ('com.github.felipehjcosta:gallerylayoutmanager:{lastest-release-version}'){
@@ -45,7 +48,7 @@ mPagerRecycleView.setAdapter(imageAdapter);
 #### Listen to selection change
 
 ```java
-layoutManager2.setCallbackInFling(true);//should receive callback when flinging, default is false
+layoutManager.setCallbackInFling(true); //should receive callback when flinging, default is false
 layoutManager.setOnItemSelectedListener(new GalleryLayoutManager.OnItemSelectedListener() {
     @Override
     public void onItemSelected(RecyclerView recyclerView, View item, int position) {
@@ -62,7 +65,7 @@ Implements your `ItemTransformer`
 public class ScaleTransformer implements GalleryLayoutManager.ItemTransformer {
 
     @Override
-    public void transformItem(GalleryLayoutManager layoutManager, View item, float fraction) {
+    public void transformItem(GalleryLayoutManager layoutManager, View item,  int viewPosition, float fraction) {
         item.setPivotX(item.getWidth() / 2.f);
         item.setPivotY(item.getHeight()/2.0f);
         float scale = 1 - 0.3f * Math.abs(fraction);
@@ -77,14 +80,27 @@ public class ScaleTransformer implements GalleryLayoutManager.ItemTransformer {
 layoutManager.setItemTransformer(new ScaleTransformer());
 ```
 
-## License
+License
+-------
 
-```
-Copyright [2017] [Hello Csl]
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-<http://www.apache.org/licenses/LICENSE-2.0>
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-```
+  MIT License
+  
+  Copyright (c) 2016 Felipe Costa
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+  
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.

@@ -18,8 +18,6 @@ import com.github.felipehjcosta.gallerylayoutmanager.util.BitmapUtils;
 import com.github.felipehjcosta.gallerylayoutmanager.util.FastBlur;
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +79,7 @@ public class ViewPagerFragment extends BaseRestoreFragment {
         layoutManager.attach(mPagerRecycleView, 30);
         layoutManager.setOnItemSelectedListener(new GalleryLayoutManager.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(RecyclerView recyclerView, @NotNull View item, int position) {
+            public void onItemSelected(RecyclerView recyclerView, View item, int position) {
                 Bitmap bmp = BitmapUtils.decodeSampledBitmapFromResource(getResources(), mResId.get(position % mResId.size()), item.getWidth(), item.getHeight());
                 mPagerBg.setImageBitmap(FastBlur.doBlur(bmp, 5, false));
             }

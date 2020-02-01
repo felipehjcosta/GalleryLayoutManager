@@ -4,14 +4,12 @@ import android.view.View;
 
 import com.github.felipehjcosta.layoutmanager.GalleryLayoutManager;
 
-import org.jetbrains.annotations.NotNull;
-
 public class CurveTransformer implements GalleryLayoutManager.ItemTransformer {
     public static final int ROTATE_ANGEL = 7;
     private static final String TAG = "CurveTransformer";
 
     @Override
-    public void transformItem(@NotNull GalleryLayoutManager layoutManager, @NotNull View item, int viewPosition, float fraction) {
+    public void transformItem(GalleryLayoutManager layoutManager, View item, int viewPosition, float fraction) {
         if (layoutManager.getOrientation() == GalleryLayoutManager.VERTICAL) {
             return;
         }

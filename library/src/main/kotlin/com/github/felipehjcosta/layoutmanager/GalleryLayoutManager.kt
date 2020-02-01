@@ -84,7 +84,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
 
     override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean = lp is LayoutParams
 
-    override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) {
+    override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State?) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "onLayoutChildren() called with: state = [$state]")
         }
@@ -133,7 +133,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
     }
 
-    private fun firstFillCover(recycler: RecyclerView.Recycler?, scrollDelta: Int) {
+    private fun firstFillCover(recycler: RecyclerView.Recycler, scrollDelta: Int) {
         if (orientation == HORIZONTAL) {
             firstFillWithHorizontal(recycler)
         } else {
@@ -148,7 +148,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         innerScrollListener.onScrolled(recyclerView, 0, 0)
     }
 
-    private fun firstFillWithHorizontal(recycler: RecyclerView.Recycler?) {
+    private fun firstFillWithHorizontal(recycler: RecyclerView.Recycler) {
         detachAndScrapAttachedViews(recycler)
         val startPosition = initialSelectedPosition
         val scrap = recycler!!.getViewForPosition(initialSelectedPosition).apply {
@@ -175,7 +175,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         fillRight(recycler, initialSelectedPosition + 1, rightStartOffset, rightEdge)
     }
 
-    private fun firstFillWithVertical(recycler: RecyclerView.Recycler?) {
+    private fun firstFillWithVertical(recycler: RecyclerView.Recycler) {
         detachAndScrapAttachedViews(recycler)
         val startPosition = initialSelectedPosition
         val scrap = recycler!!.getViewForPosition(initialSelectedPosition).apply {
@@ -294,7 +294,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
     }
 
 
-    private fun fillCover(recycler: RecyclerView.Recycler?, scrollDelta: Int) {
+    private fun fillCover(recycler: RecyclerView.Recycler, scrollDelta: Int) {
         if (itemCount == 0) {
             return
         }
@@ -337,7 +337,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
 
     }
 
-    private fun fillWithVertical(recycler: RecyclerView.Recycler?, dy: Int) {
+    private fun fillWithVertical(recycler: RecyclerView.Recycler, dy: Int) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "fillWithVertical: dy:" + dy)
         }
@@ -351,7 +351,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
                 //remove and recycle the top off screen view
                 var fixIndex = 0
                 for (i in 0..childCount - 1) {
-                    child = getChildAt(i + fixIndex)
+                    child = getChildAt(i + fixIndex)!!
                     if (getDecoratedBottom(child) - dy < topEdge) {
                         if (BuildConfig.DEBUG) {
                             Log.v(TAG, "fillWithVertical: removeAndRecycleView:" + getPosition(child) + ",bottom:" + getDecoratedBottom(child))
@@ -369,7 +369,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
             } else { //dy<0
                 //remove and recycle the bottom off screen view
                 for (i in childCount - 1 downTo 0) {
-                    child = getChildAt(i)
+                    child = getChildAt(i)!!
                     if (getDecoratedTop(child) - dy > bottomEdge) {
                         if (BuildConfig.DEBUG) {
                             Log.v(TAG, "fillWithVertical: removeAndRecycleView:" + getPosition(child))
@@ -394,7 +394,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         //2.Add or reattach item view to fill screen
         if (dy >= 0) {
             if (childCount != 0) {
-                val lastView = getChildAt(childCount - 1)
+                val lastView = getChildAt(childCount - 1)!!
                 startPosition = getPosition(lastView) + 1
                 startOffset = getDecoratedBottom(lastView)
             }
@@ -429,7 +429,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         } else {
             //dy<0
             if (childCount > 0) {
-                val firstView = getChildAt(0)
+                val firstView = getChildAt(0)!!
                 startPosition = getPosition(firstView) - 1 //前一个View的position
                 startOffset = getDecoratedTop(firstView)
             }
@@ -455,7 +455,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
     }
 
-    private fun fillWithHorizontal(recycler: RecyclerView.Recycler?, dx: Int) {
+    private fun fillWithHorizontal(recycler: RecyclerView.Recycler, dx: Int) {
         val leftEdge = orientationHelper.startAfterPadding
         val rightEdge = orientationHelper.endAfterPadding
         if (BuildConfig.DEBUG) {
@@ -468,7 +468,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
                 //remove and recycle the left off screen view
                 var fixIndex = 0
                 for (i in 0..childCount - 1) {
-                    child = getChildAt(i + fixIndex)
+                    child = getChildAt(i + fixIndex)!!
                     if (getDecoratedRight(child) - dx < leftEdge) {
                         removeAndRecycleView(child, recycler)
                         firstVisiblePosition++
@@ -483,7 +483,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
             } else { //dx<0
                 //remove and recycle the right off screen view
                 for (i in childCount - 1 downTo 0) {
-                    child = getChildAt(i)
+                    child = getChildAt(i)!!
                     if (getDecoratedLeft(child) - dx > rightEdge) {
                         removeAndRecycleView(child, recycler)
                         lastVisiblePos--
@@ -506,7 +506,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         var scrap: View
         if (dx >= 0) {
             if (childCount != 0) {
-                val lastView = getChildAt(childCount - 1)
+                val lastView = getChildAt(childCount - 1)!!
                 startPosition = getPosition(lastView) + 1 //start layout from next position item
                 startOffset = getDecoratedRight(lastView)
                 if (BuildConfig.DEBUG) {
@@ -544,7 +544,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         } else {
             //dx<0
             if (childCount > 0) {
-                val firstView = getChildAt(0)
+                val firstView = getChildAt(0)!!
                 startPosition = getPosition(firstView) - 1 //start layout from previous position item
                 startOffset = getDecoratedLeft(firstView)
                 if (BuildConfig.DEBUG) {
@@ -620,7 +620,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         return orientation == VERTICAL
     }
 
-    override fun scrollHorizontallyBy(dx: Int, recycler: RecyclerView.Recycler?, state: RecyclerView.State?): Int {
+    override fun scrollHorizontallyBy(dx: Int, recycler: RecyclerView.Recycler, state: RecyclerView.State?): Int {
         // When dx is positive，finger fling from right to left(←)，scrollX+
         if (childCount == 0 || dx == 0) {
             return 0
@@ -630,14 +630,14 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         val child: View
         if (dx > 0) {
             //If we've reached the last item, enforce limits
-            if (getPosition(getChildAt(childCount - 1)) == itemCount - 1) {
-                child = getChildAt(childCount - 1)
+            if (getPosition(getChildAt(childCount - 1)!!) == itemCount - 1) {
+                child = getChildAt(childCount - 1)!!
                 delta = -Math.max(0, Math.min(dx, (child.right - child.left) / 2 + child.left - parentCenter))
             }
         } else {
             //If we've reached the first item, enforce limits
             if (firstVisiblePosition == 0) {
-                child = getChildAt(0)
+                child = getChildAt(0)!!
                 delta = -Math.min(0, Math.max(dx, (child.right - child.left) / 2 + child.left - parentCenter))
             }
         }
@@ -650,7 +650,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         return -delta
     }
 
-    override fun scrollVerticallyBy(dy: Int, recycler: RecyclerView.Recycler?, state: RecyclerView.State?): Int {
+    override fun scrollVerticallyBy(dy: Int, recycler: RecyclerView.Recycler, state: RecyclerView.State?): Int {
         if (childCount == 0 || dy == 0) {
             return 0
         }
@@ -659,14 +659,14 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         val child: View
         if (dy > 0) {
             //If we've reached the last item, enforce limits
-            if (getPosition(getChildAt(childCount - 1)) == itemCount - 1) {
-                child = getChildAt(childCount - 1)
+            if (getPosition(getChildAt(childCount - 1)!!) == itemCount - 1) {
+                child = getChildAt(childCount - 1)!!
                 delta = -Math.max(0, Math.min(dy, (getDecoratedBottom(child) - getDecoratedTop(child)) / 2 + getDecoratedTop(child) - parentCenter))
             }
         } else {
             //If we've reached the first item, enforce limits
             if (firstVisiblePosition == 0) {
-                child = getChildAt(0)
+                child = getChildAt(0)!!
                 delta = -Math.min(0, Math.max(dy, (getDecoratedBottom(child) - getDecoratedTop(child)) / 2 + getDecoratedTop(child) - parentCenter))
             }
         }
@@ -758,11 +758,11 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         internal var mState: Int = 0
         internal var mCallbackOnIdle: Boolean = false
 
-        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            val snap = snapHelper.findSnapView(recyclerView!!.layoutManager)
+            val snap = snapHelper.findSnapView(recyclerView.layoutManager)
             if (snap != null) {
-                val selectedPosition = recyclerView.layoutManager.getPosition(snap)
+                val selectedPosition = recyclerView.layoutManager!!.getPosition(snap)
                 if (selectedPosition != currentSelectedPosition) {
                     curSelectedView?.let { it.isSelected = false }
                     curSelectedView = snap
@@ -783,16 +783,16 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
             }
         }
 
-        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
             mState = newState
             if (BuildConfig.DEBUG) {
                 Log.v(TAG, "onScrollStateChanged: " + newState)
             }
             if (mState == RecyclerView.SCROLL_STATE_IDLE) {
-                val snap = snapHelper.findSnapView(recyclerView!!.layoutManager)
+                val snap = snapHelper.findSnapView(recyclerView.layoutManager)
                 if (snap != null) {
-                    val selectedPosition = recyclerView.layoutManager.getPosition(snap)
+                    val selectedPosition = recyclerView.layoutManager!!.getPosition(snap)
                     if (selectedPosition != currentSelectedPosition) {
                         curSelectedView?.let { it.isSelected = false }
                         curSelectedView = snap

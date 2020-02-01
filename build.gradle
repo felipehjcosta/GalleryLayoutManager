@@ -24,13 +24,15 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-def supportLibraryVersion = '28.0.0'
+def appcompatVersion = '1.0.0'
+def recyclerviewVersion = '1.0.0'
+def cardviewVersion = '1.0.0'
 def butterKnifeVersion = '8.4.0'
 
 ext.deps = [
-        supportV7Compat: "com.android.support:appcompat-v7:$supportLibraryVersion",
-        recycleView: "com.android.support:recyclerview-v7:$supportLibraryVersion",
-        cardView: "com.android.support:cardview-v7:$supportLibraryVersion",
+        appCompat: "androidx.appcompat:appcompat:$appcompatVersion",
+        recycleView: "androidx.recyclerview:recyclerview:$recyclerviewVersion",
+        cardView: "androidx.cardview:cardview:$cardviewVersion",
         butterKnife: "com.jakewharton:butterknife:$butterKnifeVersion",
         butterKnifeProcessor: "com.jakewharton:butterknife-compiler:$butterKnifeVersion",
 ]

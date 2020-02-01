@@ -3,10 +3,10 @@ package com.github.felipehjcosta.layoutmanager
 import android.content.Context
 import android.graphics.PointF
 import android.graphics.Rect
-import android.support.v7.widget.LinearSmoothScroller
-import android.support.v7.widget.LinearSnapHelper
-import android.support.v7.widget.OrientationHelper
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.OrientationHelper
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.util.Log
 import android.util.SparseArray
@@ -20,9 +20,9 @@ import android.view.ViewGroup
  * Created by chensuilun on 2016/11/18.
  */
 class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTAL) :
-        RecyclerView.LayoutManager(), RecyclerView.SmoothScroller.ScrollVectorProvider {
+        androidx.recyclerview.widget.RecyclerView.LayoutManager(), androidx.recyclerview.widget.RecyclerView.SmoothScroller.ScrollVectorProvider {
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
 
     private var firstVisiblePosition = 0
     private var lastVisiblePos = 0
@@ -32,14 +32,14 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
 
     private val state: State by lazy { State() }
 
-    private val snapHelper = LinearSnapHelper()
+    private val snapHelper = androidx.recyclerview.widget.LinearSnapHelper()
 
     private val innerScrollListener = InnerScrollListener()
 
-    private val horizontalHelper: OrientationHelper by lazy { OrientationHelper.createHorizontalHelper(this) }
-    private val verticalHelper: OrientationHelper by lazy { OrientationHelper.createVerticalHelper(this) }
+    private val horizontalHelper: androidx.recyclerview.widget.OrientationHelper by lazy { androidx.recyclerview.widget.OrientationHelper.createHorizontalHelper(this) }
+    private val verticalHelper: androidx.recyclerview.widget.OrientationHelper by lazy { androidx.recyclerview.widget.OrientationHelper.createVerticalHelper(this) }
 
-    private val orientationHelper: OrientationHelper
+    private val orientationHelper: androidx.recyclerview.widget.OrientationHelper
         get() = when (orientation) {
             HORIZONTAL -> horizontalHelper
             else -> verticalHelper
@@ -60,7 +60,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
     var currentSelectedPosition = -1
         private set
 
-    override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams =
+    override fun generateDefaultLayoutParams(): androidx.recyclerview.widget.RecyclerView.LayoutParams =
             if (orientation == VERTICAL) {
                 LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
@@ -71,20 +71,20 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
                         ViewGroup.LayoutParams.MATCH_PARENT)
             }
 
-    override fun generateLayoutParams(c: Context, attrs: AttributeSet): RecyclerView.LayoutParams {
+    override fun generateLayoutParams(c: Context, attrs: AttributeSet): androidx.recyclerview.widget.RecyclerView.LayoutParams {
         return LayoutParams(c, attrs)
     }
 
-    override fun generateLayoutParams(lp: ViewGroup.LayoutParams?): RecyclerView.LayoutParams =
+    override fun generateLayoutParams(lp: ViewGroup.LayoutParams?): androidx.recyclerview.widget.RecyclerView.LayoutParams =
             if (lp is ViewGroup.MarginLayoutParams) {
                 LayoutParams(lp as ViewGroup.MarginLayoutParams?)
             } else {
                 LayoutParams(lp)
             }
 
-    override fun checkLayoutParams(lp: RecyclerView.LayoutParams?): Boolean = lp is LayoutParams
+    override fun checkLayoutParams(lp: androidx.recyclerview.widget.RecyclerView.LayoutParams?): Boolean = lp is LayoutParams
 
-    override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State?) {
+    override fun onLayoutChildren(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, state: androidx.recyclerview.widget.RecyclerView.State?) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "onLayoutChildren() called with: state = [$state]")
         }
@@ -133,7 +133,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
     }
 
-    private fun firstFillCover(recycler: RecyclerView.Recycler, scrollDelta: Int) {
+    private fun firstFillCover(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, scrollDelta: Int) {
         if (orientation == HORIZONTAL) {
             firstFillWithHorizontal(recycler)
         } else {
@@ -148,7 +148,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         innerScrollListener.onScrolled(recyclerView, 0, 0)
     }
 
-    private fun firstFillWithHorizontal(recycler: RecyclerView.Recycler) {
+    private fun firstFillWithHorizontal(recycler: androidx.recyclerview.widget.RecyclerView.Recycler) {
         detachAndScrapAttachedViews(recycler)
         val startPosition = initialSelectedPosition
         val scrap = recycler!!.getViewForPosition(initialSelectedPosition).apply {
@@ -175,7 +175,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         fillRight(recycler, initialSelectedPosition + 1, rightStartOffset, rightEdge)
     }
 
-    private fun firstFillWithVertical(recycler: RecyclerView.Recycler) {
+    private fun firstFillWithVertical(recycler: androidx.recyclerview.widget.RecyclerView.Recycler) {
         detachAndScrapAttachedViews(recycler)
         val startPosition = initialSelectedPosition
         val scrap = recycler!!.getViewForPosition(initialSelectedPosition).apply {
@@ -203,7 +203,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         fillBottom(recycler, initialSelectedPosition + 1, bottomStartOffset, bottomEdge)
     }
 
-    private fun fillLeft(recycler: RecyclerView.Recycler, startPosition: Int, leftStartOffset: Int, leftEdge: Int) {
+    private fun fillLeft(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, startPosition: Int, leftStartOffset: Int, leftEdge: Int) {
         var startOffset = leftStartOffset
         var i = startPosition
         while (i >= 0 && startOffset >= leftEdge) {
@@ -226,7 +226,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
     }
 
-    private fun fillRight(recycler: RecyclerView.Recycler, startPosition: Int, rightStartOffset: Int, rightEdge: Int) {
+    private fun fillRight(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, startPosition: Int, rightStartOffset: Int, rightEdge: Int) {
         var startOffset = rightStartOffset
         var i = startPosition
         while (i < itemCount && startOffset <= rightEdge) {
@@ -249,7 +249,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
     }
 
-    private fun fillTop(recycler: RecyclerView.Recycler, startPosition: Int, topStartOffset: Int, topEdge: Int) {
+    private fun fillTop(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, startPosition: Int, topStartOffset: Int, topEdge: Int) {
         var startOffset = topStartOffset
         var i = startPosition
         while (i >= 0 && startOffset > topEdge) {
@@ -271,7 +271,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
     }
 
-    private fun fillBottom(recycler: RecyclerView.Recycler, startPosition: Int, bottomStartOffset: Int, bottomEdge: Int) {
+    private fun fillBottom(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, startPosition: Int, bottomStartOffset: Int, bottomEdge: Int) {
         var startOffset = bottomStartOffset
         var i = startPosition
         while (i < itemCount && startOffset < bottomEdge) {
@@ -294,7 +294,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
     }
 
 
-    private fun fillCover(recycler: RecyclerView.Recycler, scrollDelta: Int) {
+    private fun fillCover(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, scrollDelta: Int) {
         if (itemCount == 0) {
             return
         }
@@ -337,7 +337,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
 
     }
 
-    private fun fillWithVertical(recycler: RecyclerView.Recycler, dy: Int) {
+    private fun fillWithVertical(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, dy: Int) {
         if (BuildConfig.DEBUG) {
             Log.d(TAG, "fillWithVertical: dy:" + dy)
         }
@@ -455,7 +455,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
     }
 
-    private fun fillWithHorizontal(recycler: RecyclerView.Recycler, dx: Int) {
+    private fun fillWithHorizontal(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, dx: Int) {
         val leftEdge = orientationHelper.startAfterPadding
         val rightEdge = orientationHelper.endAfterPadding
         if (BuildConfig.DEBUG) {
@@ -620,7 +620,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         return orientation == VERTICAL
     }
 
-    override fun scrollHorizontallyBy(dx: Int, recycler: RecyclerView.Recycler, state: RecyclerView.State?): Int {
+    override fun scrollHorizontallyBy(dx: Int, recycler: androidx.recyclerview.widget.RecyclerView.Recycler, state: androidx.recyclerview.widget.RecyclerView.State?): Int {
         // When dx is positive，finger fling from right to left(←)，scrollX+
         if (childCount == 0 || dx == 0) {
             return 0
@@ -650,7 +650,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         return -delta
     }
 
-    override fun scrollVerticallyBy(dy: Int, recycler: RecyclerView.Recycler, state: RecyclerView.State?): Int {
+    override fun scrollVerticallyBy(dy: Int, recycler: androidx.recyclerview.widget.RecyclerView.Recycler, state: androidx.recyclerview.widget.RecyclerView.State?): Int {
         if (childCount == 0 || dy == 0) {
             return 0
         }
@@ -679,13 +679,13 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         return -delta
     }
 
-    override fun smoothScrollToPosition(recyclerView: RecyclerView?, state: RecyclerView.State?, position: Int) {
+    override fun smoothScrollToPosition(recyclerView: androidx.recyclerview.widget.RecyclerView?, state: androidx.recyclerview.widget.RecyclerView.State?, position: Int) {
         val linearSmoothScroller = GallerySmoothScroller(recyclerView!!.context)
         linearSmoothScroller.targetPosition = position
         startSmoothScroll(linearSmoothScroller)
     }
 
-    fun attach(recyclerView: RecyclerView?, selectedPosition: Int = 0) {
+    fun attach(recyclerView: androidx.recyclerview.widget.RecyclerView?, selectedPosition: Int = 0) {
         if (recyclerView == null) {
             throw IllegalArgumentException("The attach RecycleView must not null!!")
         }
@@ -699,7 +699,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
     /**
      * @author chensuilun
      */
-    class LayoutParams : RecyclerView.LayoutParams {
+    class LayoutParams : androidx.recyclerview.widget.RecyclerView.LayoutParams {
 
         constructor(c: Context, attrs: AttributeSet) : super(c, attrs)
 
@@ -746,7 +746,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
          * *
          * @param position     The current selected view's position
          */
-        fun onItemSelected(recyclerView: RecyclerView?, item: View, position: Int)
+        fun onItemSelected(recyclerView: androidx.recyclerview.widget.RecyclerView?, item: View, position: Int)
     }
 
     /**
@@ -754,11 +754,11 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
 
      * @author chensuilun
      */
-    private inner class InnerScrollListener : RecyclerView.OnScrollListener() {
+    private inner class InnerScrollListener : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
         internal var mState: Int = 0
         internal var mCallbackOnIdle: Boolean = false
 
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+        override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             val snap = snapHelper.findSnapView(recyclerView.layoutManager)
             if (snap != null) {
@@ -768,7 +768,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
                     curSelectedView = snap
                     curSelectedView?.let { it.isSelected = true }
                     currentSelectedPosition = selectedPosition
-                    if (!callbackInFling && mState != RecyclerView.SCROLL_STATE_IDLE) {
+                    if (!callbackInFling && mState != androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE) {
                         if (BuildConfig.DEBUG) {
                             Log.v(TAG, "ignore selection change callback when fling ")
                         }
@@ -783,13 +783,13 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
             }
         }
 
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
             mState = newState
             if (BuildConfig.DEBUG) {
                 Log.v(TAG, "onScrollStateChanged: " + newState)
             }
-            if (mState == RecyclerView.SCROLL_STATE_IDLE) {
+            if (mState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE) {
                 val snap = snapHelper.findSnapView(recyclerView.layoutManager)
                 if (snap != null) {
                     val selectedPosition = recyclerView.layoutManager!!.getPosition(snap)
@@ -813,7 +813,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
     /**
      * Implement to support [GalleryLayoutManager.smoothScrollToPosition]
      */
-    private inner class GallerySmoothScroller(context: Context) : LinearSmoothScroller(context) {
+    private inner class GallerySmoothScroller(context: Context) : androidx.recyclerview.widget.LinearSmoothScroller(context) {
 
         /**
          * Calculates the horizontal scroll amount necessary to make the given view in center of the RecycleView
@@ -827,7 +827,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
             if (layoutManager == null || !layoutManager.canScrollHorizontally()) {
                 return 0
             }
-            val params = view.layoutParams as RecyclerView.LayoutParams
+            val params = view.layoutParams as androidx.recyclerview.widget.RecyclerView.LayoutParams
             val left = layoutManager.getDecoratedLeft(view) - params.leftMargin
             val right = layoutManager.getDecoratedRight(view) + params.rightMargin
             val start = layoutManager.paddingLeft
@@ -849,7 +849,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
             if (layoutManager == null || !layoutManager.canScrollVertically()) {
                 return 0
             }
-            val params = view.layoutParams as RecyclerView.LayoutParams
+            val params = view.layoutParams as androidx.recyclerview.widget.RecyclerView.LayoutParams
             val top = layoutManager.getDecoratedTop(view) - params.topMargin
             val bottom = layoutManager.getDecoratedBottom(view) + params.bottomMargin
             val start = layoutManager.paddingTop
@@ -860,7 +860,7 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
         }
 
 
-        override fun onTargetFound(targetView: View, state: RecyclerView.State, action: RecyclerView.SmoothScroller.Action) {
+        override fun onTargetFound(targetView: View, state: androidx.recyclerview.widget.RecyclerView.State, action: androidx.recyclerview.widget.RecyclerView.SmoothScroller.Action) {
             val dx = calculateDxToMakeCentral(targetView)
             val dy = calculateDyToMakeCentral(targetView)
             val distance = Math.sqrt((dx * dx + dy * dy).toDouble()).toInt()
@@ -877,8 +877,8 @@ class GalleryLayoutManager(val orientation: Int = GalleryLayoutManager.HORIZONTA
 
         const internal val LAYOUT_END = 1
 
-        const val HORIZONTAL = OrientationHelper.HORIZONTAL
+        const val HORIZONTAL = androidx.recyclerview.widget.OrientationHelper.HORIZONTAL
 
-        const val VERTICAL = OrientationHelper.VERTICAL
+        const val VERTICAL = androidx.recyclerview.widget.OrientationHelper.VERTICAL
     }
 }
